@@ -1,6 +1,7 @@
 class Author < ActiveRecord::Base
   has_secure_password
   has_many :surveys
+  validates :email, uniqueness: true
 
   # def self.names_with_titles
   #   joins(:surveys).
@@ -21,7 +22,7 @@ class Author < ActiveRecord::Base
   # end
 
   def self.find_specific_email(address)
-    where(email: address).all
+    find_by(email: address)
   end
 
   def self.find_most_recent
